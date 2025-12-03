@@ -69,6 +69,7 @@ def test_get_single_member_implemented(client):
         "lucky_numbers": [1, 2, 3]
     })
     tommy = json.loads(post_response.data)
+    print(tommy)
     get_response = client.get(f"/members/{tommy['id']}")
     assert get_response.status_code == 200, "The GET /members/<int:id> method should exist"
 
@@ -140,4 +141,3 @@ def test_delete_response(client):
     tommy = json.loads(post_response.data)
     delete_response = client.delete(f"/members/{tommy['id']}")
     assert delete_response.json["done"] == True, "The DELETE /members/<id> method should return a dictionary with the 'done' key"
-
